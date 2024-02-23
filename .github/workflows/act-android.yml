@@ -116,7 +116,7 @@ jobs:
           path: |
             ./app/build/outputs/apk/
 
-      - name: Create source archive
+      - name: Create build archive
         if: ${{ inputs.archive_after_build }}
         continue-on-error: true
         uses: deep-soft/zip-release@v2.2
@@ -131,7 +131,7 @@ jobs:
           env_variable: ASSET_BLD
         # archive name is ${{ env.ZIP_RELEASE_ARCHIVE }}
 
-      - name: Publish src archive
+      - name: Publish build archive
         if: ${{ inputs.archive_after_build }}
         continue-on-error: true
         uses: deep-soft/action-gh-release@v2.1
@@ -221,7 +221,7 @@ jobs:
           path: |
             ./app/build/outputs/apk/
 
-      - name: Create source archive
+      - name: Create build archive
         if: ${{ inputs.archive_after_build }}
         continue-on-error: true
         uses: deep-soft/zip-release@v2.2
@@ -236,7 +236,7 @@ jobs:
           env_variable: ASSET_BLD
         # archive name is ${{ env.ZIP_RELEASE_ARCHIVE }}
 
-      - name: Publish src archive
+      - name: Publish build archive
         if: ${{ inputs.archive_after_build }}
         continue-on-error: true
         uses: deep-soft/action-gh-release@v2.1
