@@ -143,15 +143,15 @@ jobs:
 
       - name: Copy apk from outputs/
         shell: bash
+        # set -x
         run: |
-          set -x
           mkdir -p signed-apk/free
-          echo "LIST: " ./app/build/outputs/apk/release/
-          ls -l ./app/build/outputs/apk/release/
-          cp ./app/build/outputs/apk/release/* ./signed-apk/free
+          echo "LIST: " ./app/build/outputs/apk/free/release/
+          ls -l ./app/build/outputs/apk/free/release/
+          cp ./app/build/outputs/apk/free/release/* ./signed-apk/free
           echo "LIST: " ./signed-apk/free
           ls -l ./signed-apk/free
-          mv ./signed-apk/free/app-${{ env.PRG_NAME }}-release-unsigned.apk ./signed-apk/free/${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}-free.apk
+          mv ./signed-apk/free/app-free-release-unsigned.apk ./signed-apk/free/${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}-free.apk
           echo "LIST: " ./signed-apk/free
           ls -l ./signed-apk/free
 
@@ -248,15 +248,15 @@ jobs:
 
       - name: Copy apk from outputs/
         shell: bash
+        # set -x
         run: |
-          set -x
           mkdir -p signed-apk/libre
-          echo "LIST: " ./app/build/outputs/apk/release/
-          ls -l ./app/build/outputs/apk/release/
-          cp ./app/build/outputs/apk/release/* ./signed-apk/libre
+          echo "LIST: " ./app/build/outputs/apk/libre/release/
+          ls -l ./app/build/outputs/apk/libre/release/
+          cp ./app/build/outputs/apk/libre/release/* ./signed-apk/libre
           echo "LIST: " ./signed-apk/libre
           ls -l ./signed-apk/libre
-          mv ./signed-apk/libre/app-${{ env.PRG_NAME }}-release-unsigned.apk ./signed-apk/libre/${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}-libre.apk
+          mv ./signed-apk/libre/app-libre-release-unsigned.apk ./signed-apk/libre/${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}-libre.apk
           echo "LIST: " ./signed-apk/libre
           ls -l ./signed-apk/libre
 
