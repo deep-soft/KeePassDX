@@ -14,6 +14,12 @@ on:
 #      - 'LICENSE'
 #      - 'NOTICE'
   workflow_dispatch:
+    inputs:
+      archive_after_build:
+        description: archive after build
+        type: boolean
+        default: false
+        required: true
 
 env:
   PRG_NAME:    "KeePassDX"
@@ -100,7 +106,7 @@ jobs:
 
 # free
       # - run: ./gradlew assembleDebug detekt spotlessCheck testsOnCi
-      - name: gradlew assembleRelease
+      - name: gradlew assembleFreeRelease
         run: ./gradlew assemblefreeRelease
 
       - name: Upload Artifact
@@ -109,6 +115,31 @@ jobs:
           name: upload-artifact
           path: |
             ./app/build/outputs/apk/
+
+      - name: Create source archive
+        if: ${{ inputs.archive_after_build }}
+        continue-on-error: true
+        uses: deep-soft/zip-release@v2.2
+        with:
+          type: 'tar.xz'
+          filename: "${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}-${{ env.TAG_BUILD }}-free-build"
+          directory: '.'
+          exclusions: ''
+          recursive_exclusions: ''
+          ignore_git: 'no'
+          path: '.'
+          env_variable: ASSET_BLD
+        # archive name is ${{ env.ZIP_RELEASE_ARCHIVE }}
+
+      - name: Publish src archive
+        if: ${{ inputs.archive_after_build }}
+        continue-on-error: true
+        uses: deep-soft/action-gh-release@v2.1
+        with:
+          draft: true
+          tag_name: ${{ env.TAG_NAME }}-build
+          files: |
+            ${{ env.ASSET_BLD }}
 
       - name: Copy apk from outputs/
         shell: bash
@@ -180,7 +211,7 @@ jobs:
 # libre
 
       # - run: ./gradlew assembleDebug detekt spotlessCheck testsOnCi
-      - name: gradlew assembleRelease
+      - name: gradlew assembleLibreRelease
         run: ./gradlew assemblelibreRelease
 
       - name: Upload Artifact
@@ -189,6 +220,31 @@ jobs:
           name: upload-artifact
           path: |
             ./app/build/outputs/apk/
+
+      - name: Create source archive
+        if: ${{ inputs.archive_after_build }}
+        continue-on-error: true
+        uses: deep-soft/zip-release@v2.2
+        with:
+          type: 'tar.xz'
+          filename: "${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}-${{ env.TAG_BUILD }}-libre-build"
+          directory: '.'
+          exclusions: ''
+          recursive_exclusions: ''
+          ignore_git: 'no'
+          path: '.'
+          env_variable: ASSET_BLD
+        # archive name is ${{ env.ZIP_RELEASE_ARCHIVE }}
+
+      - name: Publish src archive
+        if: ${{ inputs.archive_after_build }}
+        continue-on-error: true
+        uses: deep-soft/action-gh-release@v2.1
+        with:
+          draft: true
+          tag_name: ${{ env.TAG_NAME }}-build
+          files: |
+            ${{ env.ASSET_BLD }}
 
       - name: Copy apk from outputs/
         shell: bash
