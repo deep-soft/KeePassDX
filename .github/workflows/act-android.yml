@@ -96,7 +96,7 @@ jobs:
           java-version: 17
 
       - name: Gradle Build v3
-        uses: gradle/gradle-build-action@v3
+        uses: deep-soft/gradle-build-action@v3
 
 # free
       # - run: ./gradlew assembleDebug detekt spotlessCheck testsOnCi
