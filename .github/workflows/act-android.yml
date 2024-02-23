@@ -112,9 +112,9 @@ jobs:
       - name: Upload Artifact
         uses: deep-soft/upload-artifact@v4
         with:
-          name: upload-artifact
+          name: upload-artifact-free
           path: |
-            ./app/build/outputs/apk/
+            ./app/build/outputs/apk/free/
 
       - name: Create build archive
         if: ${{ inputs.archive_after_build }}
@@ -217,9 +217,9 @@ jobs:
       - name: Upload Artifact
         uses: deep-soft/upload-artifact@v4
         with:
-          name: upload-artifact
+          name: upload-artifact-libre
           path: |
-            ./app/build/outputs/apk/
+            ./app/build/outputs/apk/libre/
 
       - name: Create build archive
         if: ${{ inputs.archive_after_build }}
