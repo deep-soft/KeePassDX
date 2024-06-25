@@ -1,3 +1,18 @@
+KeePassDX(4.0.8)
+ * Fix graphical bug that prevented databases from being opened on some versions of Android #1848 #1850
+
+KeePassDX(4.0.7)
+ * Prevent 0 Byte file with cache during a save exception #1620 #1594 #1680
+ * Fix inline suggestions in keyboard #1840
+ * Fix broken links by default #1755
+ * Fix UX by allowing validation in entry edition #1770
+ * Fix small bugs #1709
+
+KeePassDX(4.0.6)
+ * Fix form filled recognition #1508 #1735 #1508 #1790 #1783 #1797 #1801 #1802 #1804 #1665
+ * Fix translations #1707 #1683 #1712
+ * Update APK verifier #1810
+
 KeePassDX(4.0.5)
  * Fix form filled recognition #1572 #1508
  * Rollback password color #1686 #1490

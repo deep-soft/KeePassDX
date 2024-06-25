@@ -1,8 +1,8 @@
 # Android KeePassDX
 
-<img src="https://raw.githubusercontent.com/Kunzisoft/KeePassDX/master/art/icon.png"> **Lightweight password manager for Android**, KeePassDX allows editing encrypted data in a single file in KeePass format and fill in the forms in a secure way.
+<img alt="KeePassDX Icon" src="https://raw.githubusercontent.com/Kunzisoft/KeePassDX/master/art/icon.png"> **Lightweight password safe and manager for Android**, KeePassDX allows editing encrypted data in a single file in KeePass format and fill in the forms in a secure way.
 
-<img src="https://raw.githubusercontent.com/Kunzisoft/KeePassDX/master/art/screen.jpg" width="220">
+<img alt="KeePassDX Screenshot" src="https://raw.githubusercontent.com/Kunzisoft/KeePassDX/master/art/screen.jpg" width="220">
 
 ### Features
 
@@ -48,18 +48,33 @@ Optional visual styles are accessible after a contribution (and a congratulatory
 
 ## Download
 
-*[F-Droid](https://f-droid.org/packages/com.kunzisoft.keepass.libre/) is the recommended way of installing, a libre software project that verifies that all the libraries and app code is libre software.*
+*[F-Droid](https://f-droid.org/packages/com.kunzisoft.keepass.libre/) is the recommended way of installing, a libre software project that verifies all the libraries and app code is libre software.*
 
-[<img src="https://f-droid.org/badge/get-it-on.png"
-      alt="Get it on F-Droid"
-      height="80">](https://f-droid.org/packages/com.kunzisoft.keepass.libre/)
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-      alt="Get it on Google Play"
-	height="80">](https://play.google.com/store/apps/details?id=com.kunzisoft.keepass.free)
-[<img src="https://raw.githubusercontent.com/Kunzisoft/Github-badge/main/get-it-on-github.png"
-      alt="Get it on Github"
-	height="80">](https://github.com/Kunzisoft/KeePassDX/releases)
-	
+| Source | Status | Version |
+|--------|--------|---------|
+| [Google Play](https://play.google.com/store/apps/details?id=com.kunzisoft.keepass.free) | ![PlayStore release](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dcom.kunzisoft.keepass.free%26gl%3DUS%26hl%3Den%26l%3DGoogle%2520Play%26m%3D%24version) | Free + [Pro](https://play.google.com/store/apps/details?id=com.kunzisoft.keepass.pro) |
+| [F-Droid](https://f-droid.org/en/packages/com.kunzisoft.keepass.libre/) | ![F-Droid Version](https://img.shields.io/f-droid/v/com.kunzisoft.keepass.libre?logo=F-Droid) | Libre |
+| [IzzyOnDroid](https://apt.izzysoft.de/fdroid/index/apk/com.kunzisoft.keepass.free) | ![IzzyOnDroid Version](https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/com.kunzisoft.keepass.free&label=IzzyOnDroid) | Free |
+| [GitHub](https://github.com/Kunzisoft/KeePassDX/releases) / [Obtainium](https://github.com/ImranR98/Obtainium) | ![GitHub Release](https://img.shields.io/github/v/release/Kunzisoft/KeePassDX?include_prereleases&logo=GitHub) | Free & Libre |
+
+[Version [differences](https://github.com/Kunzisoft/KeePassDX/wiki/FAQ#why-a-libre-and-free-version)]
+
+## Verify the authenticity of the downloaded app from GitHub
+1- Download the latest app from [GitHub releases](https://github.com/Kunzisoft/KeePassDX/releases/latest). <br>
+2- Open the directory where you saved the downloaded file in the Terminal on Linux/MacOS. <br>
+3- You must have `keytool` command installed. <br>
+4- Depending on the flavor you downloaded, run:
+```
+keytool -printcert -jarfile KeePassDX-*-libre.apk | grep '7D:55:B8:AF:21:03:81:AA:BF:96:0F:07:E1:7C:F7:85:7B:6D:2A:64:2C:A2:DA:6B:F0:BD:F1:B2:00:36:2F:04'
+```
+Or:
+```
+keytool -printcert -jarfile KeePassDX-*-free.apk | grep '7D:55:B8:AF:21:03:81:AA:BF:96:0F:07:E1:7C:F7:85:7B:6D:2A:64:2C:A2:DA:6B:F0:BD:F1:B2:00:36:2F:04'
+```
+You should get this output:
+```
+SHA256: 7D:55:B8:AF:21:03:81:AA:BF:96:0F:07:E1:7C:F7:85:7B:6D:2A:64:2C:A2:DA:6B:F0:BD:F1:B2:00:36:2F:04
+```
 ## Frequently Asked Questions
 
 Other questions? You can read the [FAQ](https://github.com/Kunzisoft/KeePassDX/wiki/FAQ) 
@@ -74,7 +89,7 @@ Other questions? You can read the [FAQ](https://github.com/Kunzisoft/KeePassDX/w
 
 ## License
 
-  Copyright © 2023 Jeremy Jamet / [Kunzisoft](https://www.kunzisoft.com).
+  Copyright © 2024 Jeremy Jamet / [Kunzisoft](https://www.kunzisoft.com).
 
   This file is part of KeePassDX.
 

@@ -160,7 +160,7 @@
     <string name="sort_creation_time">Время создания</string>
     <string name="sort_last_modify_time">Время изменения</string>
     <string name="sort_last_access_time">Время последнего доступа</string>
-    <string name="edit_entry">Изменить</string>
+    <string name="edit_entry">Изменить запись</string>
     <string name="allow">Разрешить</string>
     <string name="error_load_database">Невозможно загрузить базу.</string>
     <string name="error_load_database_KDF_memory">Невозможно загрузить ключ. Попробуйте уменьшить размер памяти, используемой функцией формирования ключа (KDF).</string>
@@ -367,7 +367,7 @@
     <string name="contains_duplicate_uuid_procedure">Исправить проблему путём создания новых UUID для дубликатов и продолжить работу\?</string>
     <string name="database_opened">База открыта</string>
     <string name="clipboard_explanation_summary">Копирование полей ввода с помощью буфера обмена устройства</string>
-    <string name="advanced_unlock_explanation_summary">Использовать разблокировку устройства для более лёгкого открытия базы</string>
+    <string name="advanced_unlock_explanation_summary">Используйте разблокировку устройства для более лёгкого открытия базы</string>
     <string name="database_data_compression_title">Сжатие данных</string>
     <string name="database_data_compression_summary">Сжатие данных уменьшает размер базы</string>
     <string name="max_history_items_title">Максимум записей</string>
@@ -548,7 +548,7 @@
     <string name="export_app_properties_summary">Создать резервную копию настроек</string>
     <string name="export_app_properties_title">Экспорт настроек</string>
     <string name="import_app_properties_summary">Выберите резервную копию настроек</string>
-    <string name="import_app_properties_title">Восстановить настройки</string>
+    <string name="import_app_properties_title">Импорт настроек</string>
     <string name="error_start_database_action">Произошла ошибка при выполнении действия с базой.</string>
     <string name="error_move_group_here">Сюда группу переместить невозможно.</string>
     <string name="error_word_reserved">Это слово зарезервировано и не может быть использовано.</string>
@@ -624,6 +624,7 @@
     <string name="advanced_unlock_keystore_warning">Эта функция будет хранить зашифрованные учётные данные в безопасном хранилище ключей вашего устройства.
 \n
 \nВ зависимости от конкретной реализации API операционной системы, он может быть не полностью функциональным.
+\n
 \nПроверьте совместимость и безопасность хранилища ключей через производителя устройства и разработчика используемого ПЗУ.</string>
     <string name="passphrase">Кодовая фраза</string>
     <string name="colorize_password_title">Раскрашивать пароли</string>
@@ -688,4 +689,16 @@
     <string name="warning_database_notification_permission">Разрешение на отображение уведомлений позволяет показывать состояние базы и блокировать её с помощью легкодоступной кнопки.
 \n
 \nЕсли не предоставить это разрешение, то открытая в фоновом режиме база не будет видна, если на переднем плане находится другое приложение.</string>
+    <string name="style_name_classic">Классическая</string>
+    <string name="style_name_simple">Простая</string>
+    <string name="style_name_sun">Солнечная</string>
+    <string name="style_name_divine">Божественная</string>
+    <string name="style_name_light">Светлая</string>
+    <string name="style_name_dark">Тёмная</string>
+    <string name="style_name_reply">Ответная</string>
+    <string name="style_name_kunzite">Авторская</string>
+    <string name="style_name_forest">Лесная</string>
+    <string name="style_name_moon">Лунная</string>
+    <string name="style_name_follow_system">Как в системе</string>
+    <string name="warning_database_info_changed_options_read_only">Перезагрузите базу с последними изменениями.</string>
 </resources>
