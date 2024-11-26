@@ -26,6 +26,8 @@ import com.kunzisoft.encrypt.StreamCipher
 import com.kunzisoft.keepass.database.crypto.CrsAlgorithm
 import com.kunzisoft.keepass.database.crypto.kdf.KdfFactory
 import com.kunzisoft.keepass.database.element.*
+import com.kunzisoft.keepass.database.element.DateInstant.Companion.toDotNetSeconds
+import com.kunzisoft.keepass.database.element.DateInstant.Companion.toISO8601Format
 import com.kunzisoft.keepass.database.element.binary.BinaryData.Companion.BASE64_FLAG
 import com.kunzisoft.keepass.database.element.database.CompressionAlgorithm
 import com.kunzisoft.keepass.database.element.database.DatabaseKDBX
@@ -41,7 +43,6 @@ import com.kunzisoft.keepass.database.file.DatabaseHeaderKDBX
 import com.kunzisoft.keepass.database.file.DatabaseHeaderKDBX.Companion.FILE_VERSION_40
 import com.kunzisoft.keepass.database.file.DatabaseHeaderKDBX.Companion.FILE_VERSION_41
 import com.kunzisoft.keepass.database.file.DatabaseKDBXXML
-import com.kunzisoft.keepass.database.file.DateKDBXUtil
 import com.kunzisoft.keepass.stream.HashedBlockOutputStream
 import com.kunzisoft.keepass.stream.HmacBlockOutputStream
 import com.kunzisoft.keepass.utils.*
@@ -411,14 +412,15 @@ class DatabaseOutputKDBX(private val mDatabaseKDBX: DatabaseKDBX)
     }
 
     @Throws(IllegalArgumentException::class, IllegalStateException::class, IOException::class)
-    private fun writeDateInstant(name: String, value: DateInstant) {
-        val date = value.date
+    private fun writeDateInstant(name: String, date: DateInstant) {
         if (header!!.version.isBefore(FILE_VERSION_40)) {
-            writeString(name, DatabaseKDBXXML.DateFormatter.format(date))
+            writeString(name, date.toISO8601Format())
         } else {
-            val buf = longTo8Bytes(DateKDBXUtil.convertDateToKDBX4Time(date))
-            val b64 = String(Base64.encode(buf, BASE64_FLAG))
-            writeString(name, b64)
+            writeString(name, String(
+                Base64.encode(
+                    longTo8Bytes(date.toDotNetSeconds()), BASE64_FLAG)
+                )
+            )
         }
     }
 

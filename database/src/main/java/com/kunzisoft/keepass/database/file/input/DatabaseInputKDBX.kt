@@ -26,6 +26,8 @@ import com.kunzisoft.keepass.database.crypto.CipherEngine
 import com.kunzisoft.keepass.database.crypto.CrsAlgorithm
 import com.kunzisoft.keepass.database.crypto.HmacBlock
 import com.kunzisoft.keepass.database.element.*
+import com.kunzisoft.keepass.database.element.DateInstant.Companion.fromDotNetSeconds
+import com.kunzisoft.keepass.database.element.DateInstant.Companion.fromISO8601Format
 import com.kunzisoft.keepass.database.element.binary.BinaryData
 import com.kunzisoft.keepass.database.element.binary.BinaryData.Companion.BASE64_FLAG
 import com.kunzisoft.keepass.database.element.database.CompressionAlgorithm
@@ -42,7 +44,6 @@ import com.kunzisoft.keepass.database.exception.*
 import com.kunzisoft.keepass.database.file.DatabaseHeaderKDBX
 import com.kunzisoft.keepass.database.file.DatabaseHeaderKDBX.Companion.FILE_VERSION_40
 import com.kunzisoft.keepass.database.file.DatabaseKDBXXML
-import com.kunzisoft.keepass.database.file.DateKDBXUtil
 import com.kunzisoft.keepass.stream.HashedBlockInputStream
 import com.kunzisoft.keepass.stream.HmacBlockInputStream
 import com.kunzisoft.keepass.tasks.ProgressTaskUpdater
@@ -827,11 +828,10 @@ class DatabaseInputKDBX(database: DatabaseKDBX)
     @Throws(IOException::class, XmlPullParserException::class)
     private fun readDateInstant(xpp: XmlPullParser): DateInstant {
         val sDate = readString(xpp)
-        var utcDate: Date? = null
-
+        var utcDate = DateInstant()
         if (mDatabase.kdbxVersion.isBefore(FILE_VERSION_40)) {
             try {
-                utcDate = DatabaseKDBXXML.DateFormatter.parse(sDate)
+                utcDate = sDate.fromISO8601Format()
             } catch (e: ParseException) {
                 // Catch with null test below
             }
@@ -842,12 +842,10 @@ class DatabaseInputKDBX(database: DatabaseKDBX)
                 System.arraycopy(buf, 0, buf8, 0, min(buf.size, 8))
                 buf = buf8
             }
-
             val seconds = bytes64ToLong(buf)
-            utcDate = DateKDBXUtil.convertKDBX4Time(seconds)
+            utcDate = seconds.fromDotNetSeconds()
         }
-
-        return DateInstant(utcDate ?: Date(0L))
+        return utcDate
     }
 
     @Throws(IOException::class, XmlPullParserException::class)

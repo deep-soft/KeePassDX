@@ -235,8 +235,7 @@
     <string name="menu_appearance_settings_summary">Теми, цветове, атрибути</string>
     <string name="download_initialization">Подготвяне…</string>
     <string name="content_description_entry_background_color">Цвят на фона на запис</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft е приложение с &lt;strong&gt;отворен код&lt;/strong&gt; и &lt;strong&gt;без реклами&lt;/strong&gt;.
-\nРазпространява се под лиценза &lt;strong&gt;GPLv3&lt;/strong&gt; без каквато и да е гаранция.</string>
+    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft е приложение с &lt;strong&gt;отворен код&lt;/strong&gt; и &lt;strong&gt;без реклами&lt;/strong&gt;. \nРазпространява се под лиценза &lt;strong&gt;GPLv3&lt;/strong&gt; без каквато и да е гаранция.</string>
     <string name="menu_advanced_unlock_settings_summary">Биометрия, удостоверяване</string>
     <string name="menu_security_settings_summary">Шифроване, функция за извличане на ключ</string>
     <string name="menu_master_key_settings">Настройки на главната парола</string>
@@ -499,7 +498,7 @@
     <string name="lock_database_screen_off_title">Заключване на екрана</string>
     <string name="database_data_remove_unlinked_attachments_title">Премахване на несвързани данни</string>
     <string name="warning_sure_add_file">Добавяне на файла въпреки това?</string>
-    <string name="error_unable_merge_database_kdb">Обединяване от хранилище V1 е невъзможно.</string>
+    <string name="error_unable_merge_database_kdb">Не е възможно обединяване с хранилище във формат KBD</string>
     <string name="memory_usage_explanation">Количество памет, използвана от функцията за извличане на ключове.</string>
     <string name="warning_database_already_opened">Има отворено хранилище, затворете го, за да отворите друго</string>
     <string name="warning_replace_file">При добавяне на този файл ще бъде заменен вече съществуващ.</string>
@@ -679,4 +678,6 @@
     <string name="style_name_light">Светла</string>
     <string name="style_name_dark">Тъмна</string>
     <string name="warning_database_info_changed_options_read_only">Презаредете последните промени в хранилището.</string>
+    <string name="generate_keyfile">Създаване на файл с ключ</string>
+    <string name="nodes">Възли</string>
 </resources>
