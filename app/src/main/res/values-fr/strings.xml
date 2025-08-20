@@ -65,7 +65,7 @@
     <string name="entry_user_name">Nom d’utilisateur</string>
     <string name="error_arc4">Le chiffrement de flux Arcfour n’est pas pris en charge.</string>
     <string name="error_can_not_handle_uri">Impossible de gérer cette URI dans KeePassDX.</string>
-    <string name="error_file_not_create">Impossible de créer le fichier</string>
+    <string name="error_file_not_create">Impossible de créer le fichier.</string>
     <string name="error_invalid_db">Impossible de lire la base de données.</string>
     <string name="error_invalid_path">Vérifier la validité du chemin d’accès.</string>
     <string name="error_no_name">Saisir un nom.</string>
@@ -245,7 +245,7 @@
     <string name="html_text_ad_free">Contrairement à beaucoup d’applications de gestion de mots de passe, cette application est &lt;strong&gt;sans publicité&lt;/strong&gt;, &lt;strong&gt;libre sous licence copyleft&lt;/strong&gt; et ne collecte pas de données personnelles sur ses serveurs, peu importe la version que vous utilisez.</string>
     <string name="html_text_buy_pro">En achetant la version pro, vous aurez accès à ce &lt;strong&gt;style visuelle&lt;/strong&gt; et vous aiderez notamment &lt;strong&gt;la réalisation de projets communautaires.&lt;/strong&gt;</string>
     <string name="html_text_feature_generosity">Ce &lt;strong&gt;style visuel&lt;/strong&gt; est disponible grâce à votre générosité.</string>
-    <string name="html_text_donation">En &lt;strong&gt;contribuant&lt;/strong&gt; au projet <i>(financièrement, code, traduction)</i>, vous l\'aiderez à continuer à vivre et à prospérer, et vous serez également éligible à la procédure de déblocage du &lt;strong&gt;theme&lt;/strong&gt;.</string>
+    <string name="html_text_donation">En &lt;strong&gt;contribuant&lt;/strong&gt; au projet &lt;i&gt;(financièrement, code, traduction)&lt;/i&gt;, vous l\'aiderez à continuer à vivre et à prospérer, et vous serez également éligible à la procédure de déblocage du &lt;strong&gt;theme&lt;/strong&gt;.</string>
     <string name="html_text_dev_feature">Cette fonctionnalité est &lt;strong&gt;en cours de développement&lt;/strong&gt; et nécessite votre &lt;strong&gt;contribution&lt;/strong&gt; pour être bientôt disponible.</string>
     <string name="html_text_dev_feature_buy_pro">En achetant la version &lt;strong&gt;pro&lt;/strong&gt;,</string>
     <string name="html_text_dev_feature_contibute">En &lt;strong&gt;contribuant&lt;/strong&gt;,</string>
@@ -320,7 +320,7 @@
     <string name="keyboard_previous_fill_in_title">Changement précédent</string>
     <string name="keyboard_previous_fill_in_summary">Revenir automatiquement au clavier précédent après avoir exécuté \"Action de touche automatique\"</string>
     <string name="selection_mode">Mode sélection</string>
-    <string name="do_not_kill_app">Ne pas tuer l\'application…</string>
+    <string name="do_not_kill_app">Ne pas fermer l\'application…</string>
     <string name="lock_database_back_root_title">Appuyer sur \"Retour\" pour verrouiller</string>
     <string name="lock_database_back_root_summary">Verrouille la base de données lorsque l’utilisateur clique sur le bouton retour de l’écran racine</string>
     <string name="clear_clipboard_notification_title">Suppression à la fermeture</string>
@@ -501,7 +501,7 @@
     <string name="registration_mode">Mode enregistrement</string>
     <string name="save_mode">Mode sauvegarde</string>
     <string name="search_mode">Mode recherche</string>
-    <string name="error_registration_read_only">L’enregistrement d’un nouvel élément n’est pas autorisé dans une base de données en lecture seule</string>
+    <string name="error_registration_read_only">L’enregistrement d’un nouvel élément n’est pas autorisé dans une base de données en lecture seule.</string>
     <string name="error_field_name_already_exists">Le nom du champ existe déjà.</string>
     <string name="advanced_unlock_delete_all_key_warning">Supprimer toutes les clés de chiffrement liées à la reconnaissance de déverrouillage de l\'appareil \?</string>
     <string name="device_credential_unlock_enable_summary">Vous permet d\'utiliser les informations d\'identification de votre appareil pour ouvrir la base de données</string>
@@ -509,7 +509,6 @@
     <string name="device_credential">Identifiant de l\'appareil</string>
     <string name="credential_before_click_advanced_unlock_button">Tapez le mot de passe, puis cliquez sur ce bouton.</string>
     <string name="advanced_unlock_prompt_not_initialized">Impossible d\'initialiser l\'invite de déverrouillage avancé.</string>
-    <string name="advanced_unlock_scanning_error">Erreur de déverrouillage avancé : %1$s</string>
     <string name="advanced_unlock_not_recognized">Impossible de reconnaître l\'empreinte de déverrouillage de l\'appareil</string>
     <string name="advanced_unlock_invalid_key">Impossible de lire la clé de déverrouillage de l\'appareil. Veuillez la supprimer et répéter la procédure de reconnaissance de déverrouillage.</string>
     <string name="advanced_unlock_prompt_extract_credential_message">Extraire les identifiants de la base de données avec des données de déverrouillage de l\'appareil</string>
@@ -556,9 +555,9 @@
     <string name="error_file_to_big">Le fichier que vous essayez de téléverser est trop volumineux.</string>
     <string name="content_description_otp_information">Information sur le mot de passe à usage unique</string>
     <string name="properties">Propriétés</string>
-    <string name="error_export_app_properties">Erreur lors de l\'exportation des paramètres de l\'application</string>
+    <string name="error_export_app_properties">Erreur lors de l\'exportation des paramètres de l\'application.</string>
     <string name="success_export_app_properties">Paramètres exportés de l\'application</string>
-    <string name="error_import_app_properties">Erreur lors de l\'importation des paramètres de l\'application</string>
+    <string name="error_import_app_properties">Erreur lors de l\'importation des paramètres de l\'application.</string>
     <string name="success_import_app_properties">Paramètres importés de l\'application</string>
     <string name="description_app_properties">Propriétés KeePassDX pour gérer les paramètres de l\'application</string>
     <string name="export_app_properties_summary">Créer un fichier pour exporter les paramètres de l\'application</string>
@@ -676,12 +675,12 @@
     <string name="content_description_hardware_key_checkbox">Case à cocher de clé matérielle</string>
     <string name="waiting_challenge_request">En attente de la requête de challenge…</string>
     <string name="waiting_challenge_response">En attente de la réponse de challenge…</string>
-    <string name="error_challenge_already_requested">Challenge déjà demandé</string>
+    <string name="error_challenge_already_requested">Challenge déjà demandé.</string>
     <string name="error_response_already_provided">Réponse déjà fournie.</string>
     <string name="error_no_response_from_challenge">Impossible d\'obtenir la réponse du challenge.</string>
     <string name="error_cancel_by_user">Annulé par l\'utilisateur.</string>
     <string name="error_driver_required">Le pilote pour %1$s est nécessaire.</string>
-    <string name="error_unable_merge_database_kdb">Impossible de fusionner à partir d\'un fichier de base de données kdb</string>
+    <string name="error_unable_merge_database_kdb">Impossible de fusionner à partir d\'un fichier de base de données kdb.</string>
     <string name="merge_success">Fusion terminée avec succès</string>
     <string name="info">Info</string>
     <string name="menu_app_settings_summary">Recherche, verrouillage, historique, propriétés</string>
@@ -704,6 +703,7 @@
     <string name="recursive_number_entries_title">Nombre d\'entrées récursif</string>
     <string name="recursive_number_entries_summary">Calcule récursivement le nombre d\'entrées dans un groupe</string>
     <string name="warning_large_keyfile">Il n\'est pas recommandé d\'ajouter un fichier clé volumineux, car cela pourrait empêcher l\'ouverture de la base de données.</string>
-    <string name="hide_templates_title">Cacher les modèles</string>
-    <string name="hide_templates_summary">Les modèles ne sont pas affichés</string>
+    <string name="hide_templates_title">Cacher les gabarits</string>
+    <string name="hide_templates_summary">Les gabarits ne sont pas affichés</string>
+    <string name="error_otp_secret_length">La clé secrète doit avoir ai moins %1$d caractères.</string>
 </resources>

@@ -113,10 +113,10 @@ import com.kunzisoft.keepass.view.applyWindowInsets
 import com.kunzisoft.keepass.view.hideByFading
 import com.kunzisoft.keepass.view.setTransparentNavigationBar
 import com.kunzisoft.keepass.view.showActionErrorIfNeeded
-import com.kunzisoft.keepass.view.updateLockPaddingLeft
+import com.kunzisoft.keepass.view.updateLockPaddingStart
 import com.kunzisoft.keepass.viewmodels.GroupEditViewModel
 import com.kunzisoft.keepass.viewmodels.GroupViewModel
-import org.joda.time.Instant
+import org.joda.time.LocalDateTime
 
 
 class GroupActivity : DatabaseLockActivity(),
@@ -343,7 +343,7 @@ class GroupActivity : DatabaseLockActivity(),
                         mExternalFileHelper?.createDocument(
                             getString(R.string.database_file_name_default) +
                                     "_" +
-                                    Instant.now().toString() +
+                                    LocalDateTime.now().toString() +
                                     mDatabase?.defaultFileExtension)
                     }
                     R.id.menu_lock_all -> {
@@ -1130,7 +1130,7 @@ class GroupActivity : DatabaseLockActivity(),
             View.GONE
         }
         // Padding if lock button visible
-        toolbarAction?.updateLockPaddingLeft()
+        toolbarAction?.updateLockPaddingStart()
 
         loadGroup()
     }
