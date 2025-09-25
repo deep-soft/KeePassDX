@@ -460,10 +460,10 @@ object PreferencesUtil {
             ?: TimeoutHelper.DEFAULT_TIMEOUT
     }
 
-    fun getAdvancedUnlockTimeout(context: Context): Long {
+    fun getDeviceUnlockTimeout(context: Context): Long {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        return prefs.getString(context.getString(R.string.temp_advanced_unlock_timeout_key),
-            context.getString(R.string.temp_advanced_unlock_timeout_default))?.toLong()
+        return prefs.getString(context.getString(R.string.temp_device_unlock_timeout_key),
+            context.getString(R.string.temp_device_unlock_timeout_default))?.toLong()
             ?: TimeoutHelper.DEFAULT_TIMEOUT
     }
 
@@ -503,7 +503,7 @@ object PreferencesUtil {
             context.resources.getBoolean(R.bool.enable_screenshot_mode_key_default))
     }
 
-    fun isAdvancedUnlockEnable(context: Context): Boolean {
+    fun isDeviceUnlockEnable(context: Context): Boolean {
         return isBiometricUnlockEnable(context) || isDeviceCredentialUnlockEnable(context)
     }
 
@@ -526,13 +526,13 @@ object PreferencesUtil {
                 && !isBiometricUnlockEnable(context)
     }
 
-    fun isTempAdvancedUnlockEnable(context: Context): Boolean {
+    fun isTempDeviceUnlockEnable(context: Context): Boolean {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        return prefs.getBoolean(context.getString(R.string.temp_advanced_unlock_enable_key),
-            context.resources.getBoolean(R.bool.temp_advanced_unlock_enable_default))
+        return prefs.getBoolean(context.getString(R.string.temp_device_unlock_enable_key),
+            context.resources.getBoolean(R.bool.temp_device_unlock_enable_default))
     }
 
-    fun isAdvancedUnlockPromptAutoOpenEnable(context: Context): Boolean {
+    fun isDeviceUnlockPromptAutoOpenEnable(context: Context): Boolean {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         return prefs.getBoolean(context.getString(R.string.biometric_auto_open_prompt_key),
             context.resources.getBoolean(R.bool.biometric_auto_open_prompt_default))
@@ -616,12 +616,6 @@ object PreferencesUtil {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         return prefs.getBoolean(context.getString(R.string.allow_no_password_key),
             context.resources.getBoolean(R.bool.allow_no_password_default))
-    }
-
-    fun enableReadOnlyDatabase(context: Context): Boolean {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        return prefs.getBoolean(context.getString(R.string.enable_read_only_key),
-            context.resources.getBoolean(R.bool.enable_read_only_default))
     }
 
     fun deletePasswordAfterConnexionAttempt(context: Context): Boolean {
@@ -804,7 +798,6 @@ object PreferencesUtil {
             when (name) {
                 context.getString(R.string.allow_no_password_key) -> editor.putBoolean(name, value.toBoolean())
                 context.getString(R.string.delete_entered_password_key) -> editor.putBoolean(name, value.toBoolean())
-                context.getString(R.string.enable_read_only_key) -> editor.putBoolean(name, value.toBoolean())
                 context.getString(R.string.enable_auto_save_database_key) -> editor.putBoolean(name, value.toBoolean())
                 context.getString(R.string.enable_keep_screen_on_key) -> editor.putBoolean(name, value.toBoolean())
                 context.getString(R.string.auto_focus_search_key) -> editor.putBoolean(name, value.toBoolean())
@@ -821,8 +814,8 @@ object PreferencesUtil {
                 context.getString(R.string.biometric_unlock_enable_key) -> editor.putBoolean(name, value.toBoolean())
                 context.getString(R.string.device_credential_unlock_enable_key) -> editor.putBoolean(name, value.toBoolean())
                 context.getString(R.string.biometric_auto_open_prompt_key) -> editor.putBoolean(name, value.toBoolean())
-                context.getString(R.string.temp_advanced_unlock_enable_key) -> editor.putBoolean(name, value.toBoolean())
-                context.getString(R.string.temp_advanced_unlock_timeout_key) -> editor.putString(name, value.toLong().toString())
+                context.getString(R.string.temp_device_unlock_enable_key) -> editor.putBoolean(name, value.toBoolean())
+                context.getString(R.string.temp_device_unlock_timeout_key) -> editor.putString(name, value.toLong().toString())
 
                 context.getString(R.string.magic_keyboard_key) -> editor.putBoolean(name, value.toBoolean())
                 context.getString(R.string.clipboard_notifications_key) -> editor.putBoolean(name, value.toBoolean())

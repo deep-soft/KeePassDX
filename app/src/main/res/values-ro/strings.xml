@@ -99,7 +99,7 @@
     <string name="error_invalid_db">Nu s-a putut citi baza de date.</string>
     <string name="error_invalid_path">Asigurați-vă că calea este corectă.</string>
     <string name="error_invalid_OTP">Secret OTP nevalid.</string>
-    <string name="error_no_name">Introduce un nume.</string>
+    <string name="error_no_name">Introduceți un nume.</string>
     <string name="error_nokeyfile">Alege un fisier cheie.</string>
     <string name="error_out_of_memory">Nicio memorie pentru a încărca întreaga dvs. bază de date.</string>
     <string name="error_load_database">Nu s-a putut încărca baza de date.</string>
@@ -107,7 +107,7 @@
     <string name="error_pass_gen_type">Trebuie selectat cel puțin un tip de generare a parolei.</string>
     <string name="error_disallow_no_credentials">Trebuie să setați cel puțin o credențială.</string>
     <string name="error_pass_match">Parolele nu se potrivesc.</string>
-    <string name="error_rounds_too_large">\"Transformările rotunde\" prea sus. Setarea la 2147483648.</string>
+    <string name="error_rounds_too_large">Prea multe runde de transformare. Setare la 2147483648.</string>
     <string name="error_string_key">Fiecare șir trebuie să aibă un nume de câmp.</string>
     <string name="error_wrong_length">Introduceți un număr întreg pozitiv în câmpul \"Lungime\".</string>
     <string name="error_autofill_enable_service">Nu s-a putut activa serviciul de completare automată.</string>
@@ -152,7 +152,7 @@
     <string name="settings">Setări</string>
     <string name="menu_app_settings">Setările aplicației</string>
     <string name="menu_form_filling_settings">Completarea formularelor</string>
-    <string name="menu_advanced_unlock_settings">Deblocare dispozitiv</string>
+    <string name="menu_device_unlock_settings">Deblocare dispozitiv</string>
     <string name="menu_database_settings">Setările bazei de date</string>
     <string name="menu_security_settings">Setări de securitate</string>
     <string name="menu_master_key_settings">Setări cheie principală</string>
@@ -178,7 +178,7 @@
     <string name="minus">Mai puțin</string>
     <string name="never">Niciodată</string>
     <string name="no_results">Nu există rezultate de căutare</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft este &lt;strong&gt;open source&lt;/strong&gt; și &lt;strong&gt;fără reclame&lt;/strong&gt;. \n\nEste furnizat ca atare, sub licență &lt;strong&gt;GPLv3&lt;/strong&gt;, fără nicio garanție.</string>
+    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft este &lt;strong&gt;open source&lt;/strong&gt; și &lt;strong&gt;fără reclame&lt;/strong&gt;. \nEste furnizat ca atare, sub licență &lt;strong&gt;GPLv3&lt;/strong&gt;, fără nicio garanție.</string>
     <string name="html_about_contribution">Pentru a ne &lt;strong&gt;păstra libertatea&lt;/strong&gt;, &lt;strong&gt;pentru a remedia erori&lt;/strong&gt;, &lt;strong&gt;pentru a adăuga funcții&lt;/strong&gt; și &lt;strong&gt;pentru a fi mereu activi&lt;/strong&gt;, ne bazăm pe &lt;strong&gt;contribuția&lt;/strong&gt; dvs.</string>
     <string name="hide_password_title">Ascundeți parolele</string>
     <string name="hide_password_summary">Mascați parolele (***) în mod implicit</string>
@@ -256,8 +256,8 @@
     <string name="lock_database_screen_off_summary">Blocați baza de date după câteva secunde după ce ecranul este oprit</string>
     <string name="lock_database_back_root_title">Apăsați \'Înapoi\' pentru a bloca</string>
     <string name="lock_database_back_root_summary">Blochează baza de date atunci când utilizatorul face clic pe butonul înapoi pe ecranul rădăcină</string>
-    <string name="advanced_unlock">Deblocare dispozitiv</string>
-    <string name="advanced_unlock_explanation_summary">Utilizează deblocarea dispozitivului pentru a deschide mai ușor o bază de date</string>
+    <string name="device_unlock">Deblocare dispozitiv</string>
+    <string name="device_unlock_explanation_summary">Utilizează deblocarea dispozitivului pentru a deschide mai ușor o bază de date</string>
     <string name="biometric_unlock_enable_title">Deblocare biometrică</string>
     <string name="biometric_unlock_enable_summary">Vă permite să vă scanați datele biometrice pentru a deschide baza de date</string>
     <string name="biometric_auto_open_prompt_title">Solicitare de deschidere automată</string>
@@ -336,8 +336,6 @@
     <string name="allow_no_password_summary">Permite apăsarea butonului \"Deschidere\" în cazul în care nu sunt selectate credențiale</string>
     <string name="delete_entered_password_title">Ștergere parolă</string>
     <string name="delete_entered_password_summary">Șterge parola introdusă după o încercare de conectare la o bază de date</string>
-    <string name="enable_read_only_title">Protejat la scriere</string>
-    <string name="enable_read_only_summary">Deschideți baza de date numai în citire în mod implicit</string>
     <string name="enable_auto_save_database_title">Salvare automată a bazei de date</string>
     <string name="enable_auto_save_database_summary">Salvați baza de date după fiecare acțiune importantă (în modul \"Modificabil\")</string>
     <string name="enable_education_screens_title">Sugestii educaționale</string>
@@ -383,7 +381,7 @@
     <string name="html_text_ad_free">Spre deosebire de multe aplicații de gestionare a parolelor, aceasta este &lt;strong&gt;fără reclame&lt;/strong&gt;, &lt;strong&gt;software liber cu copyleft&lt;/strong&gt; și nu colectează date personale pe serverele sale, indiferent de versiunea pe care o utilizați.</string>
     <string name="html_text_buy_pro">Prin cumpărarea versiunii pro, veți avea acces la acest lucru &lt;strong&gt;stil vizual&lt;/strong&gt; și veți ajuta în special la &lt;strong&gt;realizarea proiectelor comunitare.&lt;/strong&gt;</string>
     <string name="html_text_feature_generosity">Acest &lt;strong&gt; stil vizual &lt;/strong&gt; este disponibil datorită generozității tale.</string>
-    <string name="html_text_donation">strong&gt;Contribuind&lt;/strong&gt; la proiect &lt;i&gt;(financiar, cod, traducere)&lt;/i&gt;, îl veți ajuta să continue să trăiască și să prospere și veți fi, de asemenea, eligibil pentru procedura de deblocare a &lt;strong&gt;temei&lt;/strong&gt;.</string>
+    <string name="html_text_donation">&lt;strong&gt;Contribuind&lt;/strong&gt; la proiect &lt;i&gt;(financiar, cod, traducere)&lt;/i&gt;, îl veți ajuta să continue să trăiască și să prospere și veți fi, de asemenea, eligibil pentru procedura de deblocare a &lt;strong&gt;temelor&lt;/strong&gt;.</string>
     <string name="html_text_dev_feature">Această caracteristică este &lt;strong&gt; în curs de dezvoltare&lt;/strong&gt; și necesită ca &lt;strong&gt;contribuția&lt;/strong&gt; dvs. să fie disponibilă în curând.</string>
     <string name="html_text_dev_feature_buy_pro">Cumpărând versiunea &lt;strong&gt; pro &lt;/strong&gt;,</string>
     <string name="html_text_dev_feature_contibute">Prin &lt;strong&gt; contribuție &lt;/strong&gt;,</string>
@@ -462,7 +460,7 @@
     <string name="custom_data">Date personalizate</string>
     <string name="tags">Etichete</string>
     <string name="error_otp_type">Tipul de OTP existent nu este recunoscut de acest formular, este posibil ca validarea acestuia să nu mai genereze corect token-ul.</string>
-    <string name="error_move_group_here">Nu poți muta grupul aici.</string>
+    <string name="error_move_group_here">Nu puteți muta un grup aici.</string>
     <string name="error_string_type">Acest text nu se potrivește cu articolul solicitat.</string>
     <string name="error_registration_read_only">Salvarea unui element nou nu este permisă într-o bază de date numai pentru citire.</string>
     <string name="error_field_name_already_exists">Numele câmpului există deja.</string>
@@ -509,7 +507,7 @@
     <string name="show_uuid_summary">Afișează UUID-ul legat de o intrare sau de un grup</string>
     <string name="menu_app_settings_summary">Căutare, blocare, istoric, proprietăți</string>
     <string name="menu_form_filling_settings_summary">Tastatură, completare automată, clipboard</string>
-    <string name="menu_advanced_unlock_settings_summary">Biometrie, credențiale dispozitiv</string>
+    <string name="menu_device_unlock_settings_summary">Biometrie, credențiale dispozitiv</string>
     <string name="menu_database_settings_summary">Metadate, coș de gunoi, șabloane, istoric</string>
     <string name="master_key_settings_summary">Schimbare, reînnoire</string>
     <string name="menu_security_settings_summary">Criptare, funcție de derivare a cheilor</string>
@@ -535,7 +533,7 @@
     <string name="import_app_properties_summary">Selectați un fișier pentru a importa setările aplicației</string>
     <string name="export_app_properties_title">Exportați setările aplicației</string>
     <string name="warning_database_info_changed">Informațiile conținute în fișierul bazei de date au fost modificate în afara aplicației.</string>
-    <string name="credential_before_click_advanced_unlock_button">Introduceți parola, apoi apăsați acest buton.</string>
+    <string name="credential_before_click_device_unlock_button">Introduceți parola, apoi apăsați acest buton.</string>
     <string name="filter">Filtru</string>
     <string name="unlock">Deblocare</string>
     <string name="warning_file_too_big">O bază de date KeePass ar trebui să conțină doar fișiere utilitare mici (cum ar fi fișierele de chei PGP).
@@ -564,30 +562,30 @@
     <string name="warning_sure_add_file">Adăugați fișierul oricum?</string>
     <string name="description_app_properties">Proprietățile KeePassDX pentru a gestiona setările aplicației</string>
     <string name="warning_keyfile_integrity">Hash-ul fișierului nu este garantat, deoarece Android își poate schimba datele din mers. Schimbați extensia fișierului în .bin pentru o integritate corectă.</string>
-    <string name="temp_advanced_unlock_enable_summary">Nu stocați niciun conținut criptat pentru a utiliza deblocarea dispozitivului</string>
-    <string name="advanced_unlock_tap_delete">Atingeți pentru a șterge cheile de deblocare a dispozitivului</string>
+    <string name="temp_device_unlock_enable_summary">Nu stocați niciun conținut criptat pentru a utiliza deblocarea dispozitivului</string>
+    <string name="device_unlock_tap_delete">Atingeți pentru a șterge cheile de deblocare a dispozitivului</string>
     <string name="data">Date</string>
-    <string name="advanced_unlock_prompt_extract_credential_message">Extragerea credențialelor din baza de date cu datele de deblocare a dispozitivului</string>
+    <string name="device_unlock_prompt_extract_credential_message">Extragerea credențialelor din baza de date cu datele de deblocare a dispozitivului</string>
     <string name="warning_sure_remove_data">Eliminați aceste date oricum?</string>
-    <string name="temp_advanced_unlock_enable_title">Deblocarea temporară a dispozitivului</string>
-    <string name="advanced_unlock_timeout">Timpul de deblocare a dispozitivului</string>
+    <string name="temp_device_unlock_enable_title">Deblocarea temporară a dispozitivului</string>
+    <string name="device_unlock_timeout">Timpul de deblocare a dispozitivului</string>
     <string name="lower_case">litere mici</string>
-    <string name="advanced_unlock_not_recognized">Nu s-a putut recunoaște amprenta de deblocare a dispozitivului</string>
+    <string name="device_unlock_not_recognized">Nu s-a putut recunoaște amprenta de deblocare a dispozitivului</string>
     <string name="lock_database_show_button_title">Afișare buton de blocare</string>
     <string name="templates">Șabloane</string>
     <string name="keyboard_save_search_info_title">Salvare informații partajate</string>
-    <string name="advanced_unlock_prompt_not_initialized">Nu se poate inițializa dispozitivul de deblocare.</string>
+    <string name="device_unlock_prompt_not_initialized">Nu se poate inițializa dispozitivul de deblocare.</string>
     <string name="biometric_security_update_required">Este necesară actualizarea securității biometrice.</string>
-    <string name="temp_advanced_unlock_timeout_title">Expirarea deblocării dispozitivului</string>
-    <string name="advanced_unlock_delete_all_key_warning">Ștergeți toate cheile de criptare legate de recunoașterea deblocării dispozitivului?</string>
+    <string name="temp_device_unlock_timeout_title">Expirarea deblocării dispozitivului</string>
+    <string name="device_unlock_delete_all_key_warning">Ștergeți toate cheile de criptare legate de recunoașterea deblocării dispozitivului?</string>
     <string name="templates_group_uuid_title">Grup de șabloane</string>
     <string name="lock_database_show_button_summary">Afișează butonul de blocare în interfața cu utilizatorul</string>
     <string name="database_data_remove_unlinked_attachments_title">Eliminarea datelor fără legătură</string>
     <string name="merge_success">Îmbinare finalizată cu succes</string>
-    <string name="advanced_unlock_invalid_key">Nu se poate citi cheia de deblocare a dispozitivului. Vă rugăm să o ștergeți și să repetați procedura de recunoaștere a deblocării.</string>
+    <string name="device_unlock_invalid_key">Nu se poate citi cheia de deblocare a dispozitivului. Vă rugăm să o ștergeți și să repetați procedura de recunoaștere a deblocării.</string>
     <string name="warning_database_info_changed_options">Îmbinați datele, suprascrieți modificările externe prin salvarea bazei de date sau reîncărcați-o cu cele mai recente modificări.</string>
     <string name="device_credential_unlock_enable_title">Deblocarea credențialelor dispozitivului</string>
-    <string name="advanced_unlock_prompt_store_credential_message">Tot trebuie să vă amintiți credențialele principale ale seifului dacă utilizați recunoașterea deblocării dispozitivului.</string>
+    <string name="device_unlock_prompt_store_credential_message">Tot trebuie să vă amintiți credențialele principale ale seifului dacă utilizați recunoașterea deblocării dispozitivului.</string>
     <string name="notification">Notificare</string>
     <string name="warning_remove_unlinked_attachment">Eliminarea datelor nelegate poate reduce dimensiunea bazei de date, dar poate șterge și datele utilizate pentru pluginurile KeePass.</string>
     <string name="warning_database_revoked">Accesul la fișierul revocat de către managerul de fișiere, închideți baza de date și redeschideți-o din nou din locația sa.</string>
@@ -595,15 +593,15 @@
 \n
 \nDacă nu activați această permisiune, baza de date deschisă în fundal nu va fi vizibilă dacă o altă aplicație se află în prim-plan.</string>
     <string name="warning_copy_permission">Permisiunea de notificare este necesară pentru a utiliza funcția de notificare a clipboardului.</string>
-    <string name="advanced_unlock_prompt_store_credential_title">Legătură la deblocarea dispozitivului</string>
-    <string name="advanced_unlock_prompt_extract_credential_title">Recunoașterea deblocării dispozitivului</string>
+    <string name="device_unlock_prompt_store_credential_title">Legătură la deblocarea dispozitivului</string>
+    <string name="device_unlock_prompt_extract_credential_title">Recunoașterea deblocării dispozitivului</string>
     <string name="unlock_and_link_biometric">Legătură de deblocare a dispozitivului</string>
     <string name="configure_biometric">Nu se înrolează nicio credențială biometrică sau de dispozitiv.</string>
     <string name="autofill_select_entry">Selectați intrarea…</string>
     <string name="device_credential">Credențialele dispozitivului</string>
     <string name="device_credential_unlock_enable_summary">Vă permite să utilizați credențialele dispozitivului pentru a deschide baza de date</string>
-    <string name="temp_advanced_unlock_timeout_summary">Durata de utilizare a dispozitivului de deblocare înainte de ștergerea conținutului acestuia</string>
-    <string name="advanced_unlock_keystore_warning">Această funcție va stoca datele credențiale criptate în depozitul de chei securizat al dispozitivului dvs.
+    <string name="temp_device_unlock_timeout_summary">Durata de utilizare a dispozitivului de deblocare înainte de ștergerea conținutului acestuia</string>
+    <string name="device_unlock_keystore_warning">Această funcție va stoca datele credențiale criptate în depozitul de chei securizat al dispozitivului dvs.
 \n
 \nÎn funcție de implementarea API-ului nativ al sistemului de operare, este posibil ca această funcție să nu fie complet funcțională.
 \n
@@ -612,9 +610,9 @@
     <string name="templates_group_enable_title">Utilizarea șabloanelor</string>
     <string name="templates_group_enable_summary">Utilizați șabloane dinamice pentru a completa câmpurile unei intrări</string>
     <string name="keyboard_save_search_info_summary">Încercați să salvați informațiile partajate atunci când faceți o selecție de intrare manuală pentru o utilizare ulterioară mai ușoară</string>
-    <string name="education_advanced_unlock_title">Deblocarea bazei de date a dispozitivului</string>
+    <string name="education_device_unlock_title">Deblocarea bazei de date a dispozitivului</string>
     <string name="education_validate_entry_title">Validarea intrării</string>
-    <string name="education_advanced_unlock_summary">Conectați-vă parola la datele biometrice scanate sau la credențialele dispozitivului pentru a vă debloca rapid baza de date.</string>
+    <string name="education_device_unlock_summary">Conectați-vă parola la datele biometrice scanate sau la credențialele dispozitivului pentru a vă debloca rapid baza de date.</string>
     <string name="upper_case">LITERE MARI</string>
     <string name="title_case">Litere Mari de Titlu</string>
     <string name="autofill_application_id_blocklist_title">Lista de blocare a aplicațiilor</string>
@@ -701,4 +699,5 @@
     <string name="warning_large_keyfile">Nu este recomandat să adăugați un fișier cheie mare, acest lucru poate împiedica deschiderea bazei de date.</string>
     <string name="hide_templates_title">Ascundeți șabloanele</string>
     <string name="hide_templates_summary">Șabloanele nu sunt afișate</string>
+    <string name="error_otp_secret_length">Cheia secretă trebuie să conțină cel puțin %1$d caractere.</string>
 </resources>
