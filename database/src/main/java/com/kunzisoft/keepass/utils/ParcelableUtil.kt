@@ -25,7 +25,6 @@ import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
 import java.io.Serializable
-import java.util.*
 
 // -------- Intent --------
 inline fun <reified T : Parcelable> Intent.getParcelableExtraCompat(key: String?): T? = when {
@@ -40,7 +39,7 @@ inline fun <reified T : Serializable> Intent.getSerializableExtraCompat(key: Str
     else -> @Suppress("DEPRECATION") getSerializableExtra(key) as? T
 }
 
-inline fun <reified E : Parcelable> Intent.putParcelableList(key: String?, list: MutableList<E>) {
+inline fun <reified E : Parcelable> Intent.putParcelableList(key: String?, list: List<E>) {
     putExtra(key, list.toTypedArray())
 }
 
@@ -81,6 +80,13 @@ inline fun <reified E : Parcelable> Bundle.putParcelableList(key: String?, list:
 inline fun <reified E : Parcelable> Bundle.getParcelableList(key: String?): MutableList<E>? = when {
     SDK_INT >= 33 -> getParcelableArray(key, E::class.java)?.toMutableList()
     else -> @Suppress("DEPRECATION", "UNCHECKED_CAST") (getParcelableArray(key) as? Array<E>)?.toMutableList()
+}
+
+inline fun <reified T : Enum<T>> Bundle.putEnum(key: String?, value: T?) =
+    putString(key, value?.name)
+
+inline fun <reified T : Enum<T>> Bundle.getEnum(key: String?): T? {
+    return getString(key)?.let { enumValueOf<T>(it) }
 }
 
 // -------- Parcel --------

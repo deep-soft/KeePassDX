@@ -19,7 +19,6 @@
  */
 package com.kunzisoft.keepass.activities
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -33,8 +32,6 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
@@ -44,31 +41,28 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.android.material.snackbar.Snackbar
 import com.kunzisoft.keepass.R
 import com.kunzisoft.keepass.activities.dialogs.SetMainCredentialDialogFragment
-import com.kunzisoft.keepass.activities.helpers.EntrySelectionHelper
 import com.kunzisoft.keepass.activities.helpers.ExternalFileHelper
-import com.kunzisoft.keepass.activities.helpers.SpecialMode
 import com.kunzisoft.keepass.activities.helpers.setOpenDocumentClickListener
 import com.kunzisoft.keepass.activities.legacy.DatabaseModeActivity
 import com.kunzisoft.keepass.adapters.FileDatabaseHistoryAdapter
 import com.kunzisoft.keepass.app.database.FileDatabaseHistoryAction
-import com.kunzisoft.keepass.autofill.AutofillComponent
-import com.kunzisoft.keepass.autofill.AutofillHelper
+import com.kunzisoft.keepass.credentialprovider.EntrySelectionHelper
+import com.kunzisoft.keepass.credentialprovider.SpecialMode
+import com.kunzisoft.keepass.credentialprovider.TypeMode
 import com.kunzisoft.keepass.database.ContextualDatabase
 import com.kunzisoft.keepass.database.MainCredential
 import com.kunzisoft.keepass.education.FileDatabaseSelectActivityEducation
 import com.kunzisoft.keepass.hardware.HardwareKey
 import com.kunzisoft.keepass.model.RegisterInfo
 import com.kunzisoft.keepass.model.SearchInfo
-import com.kunzisoft.keepass.services.DatabaseTaskNotificationService
 import com.kunzisoft.keepass.services.DatabaseTaskNotificationService.Companion.ACTION_DATABASE_CREATE_TASK
 import com.kunzisoft.keepass.services.DatabaseTaskNotificationService.Companion.ACTION_DATABASE_LOAD_TASK
-import com.kunzisoft.keepass.services.DatabaseTaskNotificationService.Companion.DATABASE_URI_KEY
 import com.kunzisoft.keepass.settings.PreferencesUtil
 import com.kunzisoft.keepass.tasks.ActionRunnable
+import com.kunzisoft.keepass.utils.AppUtil.isContributingUser
 import com.kunzisoft.keepass.utils.DexUtil
 import com.kunzisoft.keepass.utils.MagikeyboardUtil
 import com.kunzisoft.keepass.utils.MenuUtil
-import com.kunzisoft.keepass.utils.UriUtil.isContributingUser
 import com.kunzisoft.keepass.utils.UriUtil.openUrl
 import com.kunzisoft.keepass.utils.getParcelableCompat
 import com.kunzisoft.keepass.view.asError
@@ -98,10 +92,7 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
 
     private var mExternalFileHelper: ExternalFileHelper? = null
 
-    private var mAutofillActivityResultLauncher: ActivityResultLauncher<Intent>? =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            AutofillHelper.buildActivityResultLauncher(this)
-        else null
+    override fun manageDatabaseInfo(): Boolean  = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -132,7 +123,7 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
         mExternalFileHelper = ExternalFileHelper(this)
         mExternalFileHelper?.buildOpenDocument { uri ->
             uri?.let {
-                launchPasswordActivityWithPath(uri)
+                launchMainCredentialActivityWithPath(uri)
             }
         }
         mExternalFileHelper?.buildCreateDocument("application/x-keepass") { databaseFileCreatedUri ->
@@ -161,7 +152,7 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
         }
         mAdapterDatabaseHistory?.setOnFileDatabaseHistoryOpenListener { fileDatabaseHistoryEntityToOpen ->
             fileDatabaseHistoryEntityToOpen.databaseUri?.let { databaseFileUri ->
-                launchPasswordActivity(
+                launchMainCredentialActivity(
                     databaseFileUri,
                     fileDatabaseHistoryEntityToOpen.keyFileUri,
                     fileDatabaseHistoryEntityToOpen.hardwareKey
@@ -180,7 +171,7 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
 
         // Load default database the first time
         databaseFilesViewModel.doForDefaultDatabase { databaseFileUri ->
-            launchPasswordActivityWithPath(databaseFileUri)
+            launchMainCredentialActivityWithPath(databaseFileUri)
         }
 
         // Retrieve the database URI provided by file manager after an orientation change
@@ -223,13 +214,16 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
             // Retrieve settings for default database
             mAdapterDatabaseHistory?.setDefaultDatabase(it)
         }
+
+        // Remove all the remember locations if needed
+        if (PreferencesUtil.rememberDatabaseLocations(applicationContext).not()) {
+            FileDatabaseHistoryAction.getInstance(applicationContext)
+                .deleteAll()
+        }
     }
 
-    override fun onDatabaseRetrieved(database: ContextualDatabase?) {
-        super.onDatabaseRetrieved(database)
-        if (database != null) {
-            launchGroupActivityIfLoaded(database)
-        }
+    override fun onDatabaseRetrieved(database: ContextualDatabase) {
+        launchGroupActivityIfLoaded(database)
     }
 
     override fun onDatabaseActionFinished(
@@ -237,25 +231,7 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
         actionTask: String,
         result: ActionRunnable.Result
     ) {
-        super.onDatabaseActionFinished(database, actionTask, result)
-
         if (result.isSuccess) {
-            // Update list
-            when (actionTask) {
-                ACTION_DATABASE_CREATE_TASK,
-                ACTION_DATABASE_LOAD_TASK -> {
-                    result.data?.getParcelableCompat<Uri>(DATABASE_URI_KEY)?.let { databaseUri ->
-                        val mainCredential =
-                            result.data?.getParcelableCompat(DatabaseTaskNotificationService.MAIN_CREDENTIAL_KEY)
-                                ?: MainCredential()
-                        databaseFilesViewModel.addDatabaseFile(
-                            databaseUri,
-                            mainCredential.keyFileUri,
-                            mainCredential.hardwareKey
-                        )
-                    }
-                }
-            }
             // Launch activity
             when (actionTask) {
                 ACTION_DATABASE_CREATE_TASK -> {
@@ -264,13 +240,13 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
                         database,
                         false
                     )
+                    coordinatorLayout.showActionErrorIfNeeded(result)
                 }
                 ACTION_DATABASE_LOAD_TASK -> {
                     launchGroupActivityIfLoaded(database)
                 }
             }
         }
-        coordinatorLayout.showActionErrorIfNeeded(result)
     }
 
     /**
@@ -288,17 +264,58 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
         Snackbar.make(coordinatorLayout, error, Snackbar.LENGTH_LONG).asError().show()
     }
 
-    private fun launchPasswordActivity(databaseUri: Uri, keyFile: Uri?, hardwareKey: HardwareKey?) {
-        MainCredentialActivity.launch(this,
-                databaseUri,
-                keyFile,
-                hardwareKey,
-                { exception ->
-                    fileNoFoundAction(exception)
+    private fun launchMainCredentialActivity(databaseUri: Uri, keyFile: Uri?, hardwareKey: HardwareKey?) {
+        try {
+            EntrySelectionHelper.doSpecialAction(
+                intent = this.intent,
+                defaultAction = {
+                    MainCredentialActivity.launch(
+                        activity = this,
+                        databaseFile = databaseUri,
+                        keyFile = keyFile,
+                        hardwareKey = hardwareKey
+                    )
                 },
-                { onCancelSpecialMode() },
-                { onLaunchActivitySpecialMode() },
-                mAutofillActivityResultLauncher)
+                searchAction = { searchInfo ->
+                    MainCredentialActivity.launchForSearchResult(
+                        activity = this,
+                        databaseFile = databaseUri,
+                        keyFile = keyFile,
+                        hardwareKey = hardwareKey,
+                        searchInfo = searchInfo
+                    )
+                    onLaunchActivitySpecialMode()
+                },
+                selectionAction = { intentSenderMode, typeMode, searchInfo ->
+                    MainCredentialActivity.launchForSelection(
+                        activity = this,
+                        activityResultLauncher = if (intentSenderMode)
+                            mCredentialActivityResultLauncher else null,
+                        databaseFile = databaseUri,
+                        keyFile = keyFile,
+                        hardwareKey = hardwareKey,
+                        typeMode = typeMode,
+                        searchInfo = searchInfo
+                    )
+                    onLaunchActivitySpecialMode()
+                },
+                registrationAction = { intentSenderMode, typeMode, registerInfo ->
+                    MainCredentialActivity.launchForRegistration(
+                        activity = this,
+                        activityResultLauncher = if (intentSenderMode)
+                            mCredentialActivityResultLauncher else null,
+                        databaseFile = databaseUri,
+                        keyFile = keyFile,
+                        hardwareKey = hardwareKey,
+                        typeMode = typeMode,
+                        registerInfo = registerInfo
+                    )
+                    onLaunchActivitySpecialMode()
+                }
+            )
+        } catch (e: FileNotFoundException) {
+            fileNoFoundAction(e)
+        }
     }
 
     private fun launchGroupActivityIfLoaded(database: ContextualDatabase) {
@@ -308,12 +325,13 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
                 { onValidateSpecialMode() },
                 { onCancelSpecialMode() },
                 { onLaunchActivitySpecialMode() },
-                mAutofillActivityResultLauncher)
+                mCredentialActivityResultLauncher
+            )
         }
     }
 
-    private fun launchPasswordActivityWithPath(databaseUri: Uri) {
-        launchPasswordActivity(databaseUri, null, null)
+    private fun launchMainCredentialActivityWithPath(databaseUri: Uri) {
+        launchMainCredentialActivity(databaseUri, null, null)
         // Delete flickering for kitkat <=
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
@@ -337,10 +355,6 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
             }
         }
 
-        mDatabase?.let { database ->
-            launchGroupActivityIfLoaded(database)
-        }
-
         // Show recent files if allowed
         if (PreferencesUtil.showRecentFiles(this@FileDatabaseSelectActivity)) {
             databaseFilesViewModel.loadListOfDatabases()
@@ -359,7 +373,7 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
         try {
             mDatabaseFileUri?.let { databaseUri ->
                 // Create the new database
-                createDatabase(databaseUri, mainCredential)
+                mDatabaseViewModel.createDatabase(databaseUri, mainCredential)
             }
         } catch (e: Exception) {
             val error = getString(R.string.error_create_database_file)
@@ -443,55 +457,36 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
          * -------------------------
          */
 
-        fun launchForSearchResult(context: Context,
-                                  searchInfo: SearchInfo) {
-            EntrySelectionHelper.startActivityForSearchModeResult(context,
-                    Intent(context, FileDatabaseSelectActivity::class.java),
-                    searchInfo)
+        fun launchForSearch(
+            context: Context,
+            searchInfo: SearchInfo
+        ) {
+            EntrySelectionHelper.startActivityForSearchModeResult(
+                context = context,
+                intent = Intent(context, FileDatabaseSelectActivity::class.java),
+                searchInfo = searchInfo
+            )
         }
 
         /*
          * -------------------------
-         * 		Save Launch
+         * 		Selection Launch
          * -------------------------
          */
 
-        fun launchForSaveResult(context: Context,
-                                searchInfo: SearchInfo) {
-            EntrySelectionHelper.startActivityForSaveModeResult(context,
-                    Intent(context, FileDatabaseSelectActivity::class.java),
-                    searchInfo)
-        }
-
-        /*
-         * -------------------------
-         * 		Keyboard Launch
-         * -------------------------
-         */
-
-        fun launchForKeyboardSelectionResult(activity: Activity,
-                                             searchInfo: SearchInfo? = null) {
-            EntrySelectionHelper.startActivityForKeyboardSelectionModeResult(activity,
-                    Intent(activity, FileDatabaseSelectActivity::class.java),
-                    searchInfo)
-        }
-
-        /*
-         * -------------------------
-         * 		Autofill Launch
-         * -------------------------
-         */
-
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        fun launchForAutofillResult(activity: AppCompatActivity,
-                                    activityResultLauncher: ActivityResultLauncher<Intent>?,
-                                    autofillComponent: AutofillComponent,
-                                    searchInfo: SearchInfo? = null) {
-            AutofillHelper.startActivityForAutofillResult(activity,
-                    Intent(activity, FileDatabaseSelectActivity::class.java),
-                    activityResultLauncher,
-                    autofillComponent,
-                    searchInfo)
+        fun launchForSelection(
+            context: Context,
+            typeMode: TypeMode,
+            searchInfo: SearchInfo? = null,
+            activityResultLauncher: ActivityResultLauncher<Intent>?,
+        ) {
+            EntrySelectionHelper.startActivityForSelectionModeResult(
+                context = context,
+                intent = Intent(context, FileDatabaseSelectActivity::class.java),
+                searchInfo = searchInfo,
+                typeMode = typeMode,
+                activityResultLauncher = activityResultLauncher
+            )
         }
 
         /*
@@ -499,11 +494,19 @@ class FileDatabaseSelectActivity : DatabaseModeActivity(),
          * 		Registration Launch
          * -------------------------
          */
-        fun launchForRegistration(context: Context,
-                                  registerInfo: RegisterInfo? = null) {
-            EntrySelectionHelper.startActivityForRegistrationModeResult(context,
-                    Intent(context, FileDatabaseSelectActivity::class.java),
-                    registerInfo)
+        fun launchForRegistration(
+            context: Context,
+            typeMode: TypeMode,
+            registerInfo: RegisterInfo? = null,
+            activityResultLauncher: ActivityResultLauncher<Intent>?,
+        ) {
+            EntrySelectionHelper.startActivityForRegistrationModeResult(
+                context = context,
+                intent = Intent(context, FileDatabaseSelectActivity::class.java),
+                registerInfo = registerInfo,
+                typeMode = typeMode,
+                activityResultLauncher = activityResultLauncher
+            )
         }
     }
 }

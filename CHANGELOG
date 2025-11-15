@@ -1,3 +1,40 @@
+KeePassDX(4.2.4)
+ * Fix remembering database location #2262
+
+KeePassDX(4.2.3)
+ * Fix multiple Passkey selection #2253
+ * Fix database dialog subtitle #2254
+ * Fix save search info if URL present #2255
+ * Small fixes
+
+KeePassDX(4.2.2)
+ * Fix database merge algorithm #2223
+ * Fix save search info #2243
+ * Fix Play Service as privileged app for Passkey Cross Device Authentication #2244
+ * Small fixes
+
+KeePassDX(4.2.1)
+ * Fix Magikeyboard autosearch #2233
+ * Fix database merge #2223
+ * Fix dialog database action #2234
+ * Fix autofill selection #2238 #2235
+ * Small fixes
+
+KeePassDX(4.2.0)
+ * Passkeys management #1421 #2097 (@cali-95)
+ * Confirm usage of passkey #2165 #2124
+ * Dialog to manage missing signature #2152 #2155 #2161 #2160
+ * Capture error #2159 #2215
+ * Change Passkey Backup Eligibility & Backup State #2135 #2150 #2212
+ * Search settings #2112 #2181 #2187 #2204
+ * Autofill refactoring #765 #2196
+ * Small fixes #2157 #2164 #2171 #2122 #2180 #2209 #2214
+
+KeePassDX(4.1.9)
+ * Fix landscape UI #2198 #2200 (@chenxiaolong)
+ * Fix start loop and flash screen #2201
+ * Small fixes
+
 KeePassDX(4.1.8)
  * Updated to API 35 minimum SDK 19 #2073 #2138 #2067 #2133 #1687 (Thx @Dev-ClayP)
  * Remember last read-only state #2099 #2100 (Thx @rmacklin)

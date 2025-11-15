@@ -70,8 +70,12 @@ open class SettingsActivity
         // To apply navigation bar with background color
         /* TODO Settings nav bar
         setTransparentNavigationBar {
-            coordinatorLayout?.applyWindowInsets(WindowInsetPosition.TOP)
-            footer?.applyWindowInsets(WindowInsetPosition.BOTTOM)
+            coordinatorLayout?.applyWindowInsets(EnumSet.of(
+                WindowInsetPosition.TOP_MARGINS,
+                WindowInsetPosition.BOTTOM_MARGINS,
+                WindowInsetPosition.START_MARGINS,
+                WindowInsetPosition.END_MARGINS,
+            ))
         }*/
 
         mExternalFileHelper = ExternalFileHelper(this)
@@ -155,10 +159,6 @@ open class SettingsActivity
         return coordinatorLayout
     }
 
-    override fun finishActivityIfDatabaseNotLoaded(): Boolean {
-        return false
-    }
-
     override fun onDatabaseActionFinished(
         database: ContextualDatabase,
         actionTask: String,
@@ -188,7 +188,7 @@ open class SettingsActivity
     }
 
     override fun onAssignKeyDialogPositiveClick(mainCredential: MainCredential) {
-        assignPassword(mainCredential)
+        assignMainCredential(mainCredential)
     }
 
     override fun onAssignKeyDialogNegativeClick(mainCredential: MainCredential) {}

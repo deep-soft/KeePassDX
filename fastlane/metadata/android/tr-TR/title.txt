@@ -1,1 +1,1 @@
-KeePassDX - FOSS Parola Kasası
+KeePassDX Pass(key/word) Vault

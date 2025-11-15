@@ -27,7 +27,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.preference.PreferenceManager
 import com.kunzisoft.keepass.R
-import com.kunzisoft.keepass.magikeyboard.MagikeyboardService
+import com.kunzisoft.keepass.credentialprovider.magikeyboard.MagikeyboardService
 import com.kunzisoft.keepass.model.EntryInfo
 import com.kunzisoft.keepass.settings.PreferencesUtil
 import com.kunzisoft.keepass.timeout.TimeoutHelper
@@ -55,7 +55,7 @@ class KeyboardEntryNotificationService : LockNotificationService() {
             sendBroadcast(Intent(LOCK_ACTION))
         }
         // Stop the service
-        stopSelf()
+        stopService()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
