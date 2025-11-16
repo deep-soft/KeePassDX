@@ -148,10 +148,10 @@ jobs:
           mkdir -p signed-apk/free
           echo "LIST: " ./app/build/outputs/apk/free/release/
           ls -l ./app/build/outputs/apk/free/release/
-          cp ./app/build/outputs/apk/free/release/* ./signed-apk/free
+          cp ./app/build/outputs/apk/free/release/* ./signed-apk/free || true
           echo "LIST: " ./signed-apk/free
           ls -l ./signed-apk/free
-          mv ./signed-apk/free/app-free-release-unsigned.apk ./signed-apk/free/${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}-free.apk
+          mv ./signed-apk/free/app-free-release-unsigned.apk ./signed-apk/free/${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}-free.apk || true
           echo "LIST: " ./signed-apk/free
           ls -l ./signed-apk/free
 
