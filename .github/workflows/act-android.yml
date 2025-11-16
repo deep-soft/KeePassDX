@@ -253,10 +253,10 @@ jobs:
           mkdir -p signed-apk/libre
           echo "LIST: " ./app/build/outputs/apk/libre/release/
           ls -l ./app/build/outputs/apk/libre/release/
-          cp ./app/build/outputs/apk/libre/release/* ./signed-apk/libre
+          cp ./app/build/outputs/apk/libre/release/* ./signed-apk/libre || true
           echo "LIST: " ./signed-apk/libre
           ls -l ./signed-apk/libre
-          mv ./signed-apk/libre/app-libre-release-unsigned.apk ./signed-apk/libre/${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}-libre.apk
+          mv ./signed-apk/libre/app-libre-release-unsigned.apk ./signed-apk/libre/${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}-libre.apk || true
           echo "LIST: " ./signed-apk/libre
           ls -l ./signed-apk/libre
 
